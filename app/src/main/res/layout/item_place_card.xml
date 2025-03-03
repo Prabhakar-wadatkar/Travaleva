@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Image Section -->
+        <ImageView
+            android:id="@+id/placeImage"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/placeholder_image"/>
+
+        <!-- Details Section -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Title -->
+            <TextView
+                android:id="@+id/Place_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <!-- City -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/labelCity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="City:"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+
+
+                <TextView
+                    android:id="@+id/placeCity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:text=""
+                    android:textSize="12sp"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <!-- Charges -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/labelCharges"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Charge:"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+
+
+                <TextView
+                    android:id="@+id/placeCharges"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:text=""
+                    android:textSize="12sp"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <!-- Expandable Section -->
+            <LinearLayout
+                android:id="@+id/detailsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- Description -->
+                <TextView
+                    android:id="@+id/placeDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Description"
+                    android:textSize="12sp"
+                    android:textColor="@color/black" />
+
+<!--                &lt;!&ndash; Charges &ndash;&gt;-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/labelCharges"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="4dp"-->
+<!--                        android:text="Charges:"-->
+<!--                        android:textSize="12sp"-->
+<!--                        android:textColor="@color/black" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/placeCharges"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="16dp"-->
+<!--                        android:layout_marginTop="4dp"-->
+<!--                        android:text="Free"-->
+<!--                        android:textSize="12sp"-->
+<!--                        android:textColor="@color/black" />-->
+<!--                </LinearLayout>-->
+
+                <!-- Parking -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textParkingLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Parking Available:"
+                        android:textSize="12sp"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/placeParking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="Yes"
+                        android:textSize="12sp"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <!-- Place Added By -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/labelAddedBy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Place added by:"
+                        android:textSize="12sp"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/placeAddedBy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="Admin"
+                        android:textSize="12sp"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonViewDetails"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="VIEW DETAILS"
+                    android:textColor="@color/gray"
+                    android:backgroundTint="@android:color/transparent"
+                    android:textSize="8sp"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="1dp"
+                    android:layout_marginEnd="4dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonViewMap"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="VIEW IN MAP"
+                    android:textColor="@color/gray"
+                    android:backgroundTint="@android:color/transparent"
+                    android:textSize="8sp"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="1dp"
+                    android:layout_marginStart="4dp" />
+            </LinearLayout>
+
+            <!-- Book Place Button -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonBookPlace"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="BOOK PLACE"
+                    android:textColor="@color/gray"
+                    android:backgroundTint="@android:color/transparent"
+                    android:textSize="8sp"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="1dp"
+                    android:onClick="openBookingFragment"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_marginTop="8dp"-->
+<!--    android:layout_marginStart="16dp"-->
+<!--    android:layout_marginEnd="16dp"-->
+<!--    app:cardCornerRadius="10dp"-->
+<!--    app:cardElevation="5dp">-->
+
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal">-->
+
+<!--        &lt;!&ndash; Image Section &ndash;&gt;-->
+<!--        <ImageView-->
+<!--            android:id="@+id/placeImage"-->
+<!--            android:layout_width="150dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            android:src="@drawable/placeholder_image"/>-->
+
+<!--        &lt;!&ndash; Details Section &ndash;&gt;-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:orientation="vertical"-->
+<!--            android:padding="16dp">-->
+
+<!--            &lt;!&ndash; Title &ndash;&gt;-->
+<!--            <TextView-->
+<!--                android:id="@+id/Place_title"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Title"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="18sp"-->
+<!--                android:textStyle="bold" />-->
+
+<!--            &lt;!&ndash; Description &ndash;&gt;-->
+<!--            <TextView-->
+<!--                android:id="@+id/placeDescription"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="4dp"-->
+<!--                android:text="Description"-->
+<!--                android:textSize="12sp"-->
+<!--                android:textColor="@color/black" />-->
+
+<!--            &lt;!&ndash; Charges &ndash;&gt;-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/labelCharges"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="4dp"-->
+<!--                    android:text="Charges:"-->
+<!--                    android:textSize="12sp"-->
+<!--                    android:textColor="@color/black" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/placeCharges"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="16dp"-->
+<!--                    android:layout_marginTop="4dp"-->
+<!--                    android:text="Free"-->
+<!--                    android:textSize="12sp"-->
+<!--                    android:textColor="@color/black" />-->
+<!--            </LinearLayout>-->
+
+<!--            &lt;!&ndash; Parking &ndash;&gt;-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="1dp"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textParkingLabel"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Parking Available:"-->
+<!--                    android:textSize="12sp"-->
+<!--                    android:textColor="@color/black" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/placeParking"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="16dp"-->
+<!--                    android:text="Yes"-->
+<!--                    android:textSize="12sp"-->
+<!--                    android:textColor="@color/black" />-->
+<!--            </LinearLayout>-->
+
+<!--            &lt;!&ndash; Place Added By &ndash;&gt;-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="4dp"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/labelAddedBy"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Place added by:"-->
+<!--                    android:textSize="12sp"-->
+<!--                    android:textColor="@color/black" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/placeAddedBy"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="16dp"-->
+<!--                    android:text="Admin"-->
+<!--                    android:textSize="12sp"-->
+<!--                    android:textColor="@color/black" />-->
+<!--            </LinearLayout>-->
+
+<!--            &lt;!&ndash; Buttons &ndash;&gt;-->
+
+<!--            &lt;!&ndash; Buttons &ndash;&gt;-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:gravity="center">-->
+
+<!--                <com.google.android.material.button.MaterialButton-->
+<!--                    android:id="@+id/ViewDetails"-->
+<!--                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="VIEW DETAILS"-->
+<!--                    android:textColor="@color/gray"-->
+<!--                    android:backgroundTint="@android:color/transparent"-->
+<!--                    android:textSize="13sp"-->
+<!--                    app:icon="@drawable/ic_info"-->
+<!--                    app:iconTint="@color/gray"-->
+<!--                    app:strokeColor="@color/gray"-->
+<!--                    app:strokeWidth="1dp"-->
+<!--                    app:iconGravity="start"-->
+<!--                    android:paddingStart="12dp"-->
+<!--                    android:paddingEnd="12dp"/>-->
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:gravity="center">-->
+
+<!--                <com.google.android.material.button.MaterialButton-->
+<!--                    android:id="@+id/buttonViewDetails"-->
+<!--                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="VIEW IN MAP"-->
+<!--                    android:textColor="@color/gray"-->
+<!--                    android:backgroundTint="@android:color/transparent"-->
+<!--                    android:textSize="13sp"-->
+<!--                    app:icon="@drawable/ic_info"-->
+<!--                    app:iconTint="@color/gray"-->
+<!--                    app:strokeColor="@color/gray"-->
+<!--                    app:strokeWidth="1dp"-->
+<!--                    app:iconGravity="start"-->
+<!--                    android:paddingStart="12dp"-->
+<!--                    android:paddingEnd="12dp"/>-->
+<!--            </LinearLayout>-->
+<!--        </LinearLayout>-->
+<!--    </LinearLayout>-->
+<!--</androidx.cardview.widget.CardView>-->

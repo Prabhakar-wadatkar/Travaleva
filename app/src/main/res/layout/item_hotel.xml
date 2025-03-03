@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp"
+    app:strokeColor="@color/card_stroke"
+    app:strokeWidth="1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <ImageView
+            android:id="@+id/hotelImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/hotel_image_1"
+            android:layout_marginEnd="16dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="Hotel Image"
+            android:background="@drawable/rounded_corner"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingVertical="4dp">
+
+            <TextView
+                android:id="@+id/hotelName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hotel Name"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:ellipsize="end"
+                android:maxLines="1"
+                tools:text="Grand Luxury Hotel"/>
+
+            <TextView
+                android:id="@+id/hotelDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Hotel Description"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                android:textColor="?android:attr/textColorSecondary"
+                android:ellipsize="end"
+                android:maxLines="2"
+                tools:text="Luxury 5-star hotel with premium amenities"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/hotelPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$100"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                    android:textColor="?attr/colorPrimary"
+                    android:textStyle="bold"
+                    tools:text="$299/night"/>
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/bookButton"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:text="Book Now"
+                    app:icon="@drawable/ic_hotels"
+                    app:iconTint="?attr/colorPrimary"
+                    app:strokeColor="?attr/colorPrimary"
+                    app:strokeWidth="1dp"
+                    android:textColor="?attr/colorPrimary"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
+
+<!--    <?xml version="1.0" encoding="utf-8"?>-->
+<!--<androidx.cardview.widget.CardView-->
+<!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--xmlns:tools="http://schemas.android.com/tools"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:layout_margin="8dp"-->
+<!--app:cardCornerRadius="12dp"-->
+<!--app:cardElevation="2dp"-->
+<!--app:cardUseCompatPadding="true">-->
+
+<!--<androidx.constraintlayout.widget.ConstraintLayout-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:padding="12dp">-->
+
+<!--    &lt;!&ndash; Hotel Image with Fixed Aspect Ratio &ndash;&gt;-->
+<!--    <ImageView-->
+<!--        android:id="@+id/hotelImage"-->
+<!--        android:layout_width="120dp"-->
+<!--        android:layout_height="120dp"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        android:contentDescription="Hotel Image"-->
+<!--        android:src="@drawable/hotel_image_1"-->
+<!--        android:background="@drawable/rounded_corner"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"/>-->
+
+<!--    &lt;!&ndash; Hotel Name with Ellipsize &ndash;&gt;-->
+<!--    <TextView-->
+<!--        android:id="@+id/hotelName"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textSize="18sp"-->
+<!--        android:ellipsize="end"-->
+<!--        android:maxLines="1"-->
+<!--        android:textColor="@color/primary_text"-->
+<!--        app:layout_constraintStart_toEndOf="@id/hotelImage"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        tools:text="Grand Luxury Hotel"/>-->
+
+<!--    &lt;!&ndash; Rating with Proper Alignment &ndash;&gt;-->
+<!--    &lt;!&ndash;        <LinearLayout&ndash;&gt;-->
+<!--    &lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;-->
+<!--    &lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--    &lt;!&ndash;            android:orientation="horizontal"&ndash;&gt;-->
+<!--    &lt;!&ndash;            app:layout_constraintStart_toEndOf="@id/hotelImage"&ndash;&gt;-->
+<!--    &lt;!&ndash;            app:layout_constraintTop_toBottomOf="@id/hotelName"&ndash;&gt;-->
+<!--    &lt;!&ndash;            android:layout_marginStart="16dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;            android:layout_marginTop="4dp">&ndash;&gt;-->
+
+<!--    &lt;!&ndash;            <RatingBar&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:id="@+id/hotelRating"&ndash;&gt;-->
+<!--    &lt;!&ndash;                style="?android:attr/ratingBarStyleSmall"&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:numStars="5"&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:stepSize="0.5"&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:rating="4.5"&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:isIndicator="true"/>&ndash;&gt;-->
+
+<!--    &lt;!&ndash;            <TextView&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:id="@+id/ratingText"&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:textSize="14sp"&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:textColor="@color/secondary_text"&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:layout_marginStart="4dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;                tools:text="(4.5)"/>&ndash;&gt;-->
+<!--    &lt;!&ndash;        </LinearLayout>&ndash;&gt;-->
+
+<!--    &lt;!&ndash; Location with Proper Text Handling &ndash;&gt;-->
+<!--    <TextView-->
+<!--        android:id="@+id/hotelLocation"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textSize="14sp"-->
+<!--        android:textColor="@color/secondary_text"-->
+<!--        android:maxLines="2"-->
+<!--        android:ellipsize="end"-->
+<!--        app:layout_constraintStart_toEndOf="@id/hotelImage"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/hotelName"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="4dp"-->
+<!--        tools:text="123 Main Street, New York City, United States of America"/>-->
+
+<!--    &lt;!&ndash; Amenities Icons with Proper Spacing &ndash;&gt;-->
+
+<!--    &lt;!&ndash; Price and Button Section &ndash;&gt;-->
+<!--    <LinearLayout-->
+<!--        android:id="@+id/amenitiesIcons"-->
+<!--        android:layout_width="224dp"-->
+<!--        android:layout_height="26dp"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        android:orientation="horizontal"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="1.0"-->
+<!--        app:layout_constraintStart_toEndOf="@id/hotelImage"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/hotelLocation">-->
+
+<!--        &lt;!&ndash; Example Amenity Items &ndash;&gt;-->
+<!--        <ImageView-->
+<!--            android:id="@+id/amenityWifi"-->
+<!--            android:layout_width="24dp"-->
+<!--            android:layout_height="24dp"-->
+<!--            android:layout_marginEnd="8dp"-->
+<!--            android:src="@drawable/ic_wifi"-->
+<!--            app:tint="@color/primary_color" />-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/amenityPool"-->
+<!--            android:layout_width="24dp"-->
+<!--            android:layout_height="24dp"-->
+<!--            android:layout_marginEnd="8dp"-->
+<!--            android:src="@drawable/ic_pool"-->
+<!--            app:tint="@color/primary_color" />-->
+<!--    </LinearLayout>-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:gravity="center_vertical"-->
+<!--        app:layout_constraintStart_toEndOf="@id/hotelImage"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/amenitiesIcons"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        android:layout_marginTop="12dp">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/hotelPrice"-->
+<!--            android:layout_width="112dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:textColor="@color/primary_color"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold"-->
+<!--            tools:text="$299/night"-->
+<!--            android:layout_marginStart="16dp"/>-->
+
+<!--        <Button-->
+<!--            android:id="@+id/bookButton"-->
+<!--            style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="36dp"-->
+<!--            android:text="Book Now"-->
+<!--            android:textAllCaps="false"-->
+<!--            app:strokeColor="@color/primary_color"-->
+<!--            android:textColor="@color/primary_color"/>-->
+<!--    </LinearLayout>-->
+
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--</androidx.cardview.widget.CardView>-->

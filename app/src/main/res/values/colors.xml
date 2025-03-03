@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>\
+    <color name="bottam_navigation_background">#5D48CA</color>
+    <color name="top_navigation_background">#5D48CA</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="primaryColor">#6200EE</color>
+    <color name="gray">#757575</color>
+    <color name="light_gray">#E0E0E0</color>
+    <color name="red">#D32F2F</color>
+    <color name="peach_cream">#FFF0DB</color>
+    <color name="paymentPrimary">#78E87E</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
+    <color name="primary_color">#6200EE</color>
+    <color name="card_stroke">#1F000000</color>
+
+
+</resources>

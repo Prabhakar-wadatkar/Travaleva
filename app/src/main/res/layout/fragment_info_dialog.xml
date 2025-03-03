@@ -1,0 +1,19 @@
+<!-- res/layout/dialog_info.xml -->
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="32dp"
+    android:radius="16dp"
+    android:padding="16dp"
+    android:background="?android:attr/selectableItemBackground"
+    android:elevation="8dp">
+
+    <TextView
+        android:id="@+id/infoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:padding="16dp" />
+</androidx.cardview.widget.CardView>

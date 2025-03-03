@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Travel Eva</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="design_developed_by"><![CDATA[Design & developed by:]]></string>
+    <string name="version">version 1.0</string>
+    <string name="profile_picture">Profile Picture</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="logout">Logout</string>
+    <string name="edit_profile_icon">Edit Profile Icon</string>
+    <string name="logout_icon">Logout Icon</string>
+
+</resources>

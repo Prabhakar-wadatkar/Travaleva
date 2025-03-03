@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:title="Home"
+        android:icon="@drawable/ic_home"/>
+    <item
+        android:id="@+id/category"
+        android:title="Category"
+        android:icon="@drawable/ic_category"/>
+    <item
+        android:id="@+id/map"
+        android:title="Map"
+        android:icon="@drawable/ic_map"/>
+    <item
+        android:id="@+id/flights"
+        android:title="Flights"
+        android:icon="@drawable/ic_flight"/>
+    <item
+        android:id="@+id/hotels"
+        android:title="Hotels"
+        android:icon="@drawable/ic_hotels"/>
+</menu>

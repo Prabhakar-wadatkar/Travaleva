@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="195dp"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@drawable/ticket_bg">
+        <!-- Place Name -->
+        <TextView
+            android:id="@+id/textPlaceName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Moonlight Concert"
+            tools:text="Moonlight Concert"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- Show Ticket Instruction -->
+        <TextView
+            android:id="@+id/textViewInstruction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Show your ticket at the entrance"
+            tools:text="Show your ticket at the entrance"
+            android:textSize="14sp"
+            android:textColor="@android:color/darker_gray" />
+
+        <!-- City -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <!--        <TextView-->
+            <!--            android:id="@+id/textCitylable"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:text="City: "-->
+            <!--            android:textStyle="bold"-->
+            <!--            android:textSize="14sp" />-->
+
+            <TextView
+                android:id="@+id/placeCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="King Faisal Ibn Abd Al Aziz, Al Sadalah"
+                tools:text="King Faisal Ibn Abd Al Aziz, Al Sadalah"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Date -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:id="@+id/textDatelable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date: "
+                android:textStyle="bold"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textDates"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12/11/1998"
+                tools:text="12/11/1998"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+
+
+        <!-- Cost -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:id="@+id/textCostlable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cost: "
+                android:textStyle="bold"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/placeCost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10000"
+                tools:text="10000"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Ticket Number -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:id="@+id/textTicketlable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ticket Number: "
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textTicketNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="93447150"
+                tools:text="93447150"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

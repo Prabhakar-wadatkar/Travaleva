@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "175807751943",
+    "firebase_url": "https://cryptowallet-12b45-default-rtdb.firebaseio.com",
+    "project_id": "cryptowallet-12b45",
+    "storage_bucket": "cryptowallet-12b45.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:175807751943:android:ec707384489a5626bec7a2",
+        "android_client_info": {
+          "package_name": "com.example.cryptowallet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHuFeKXdohgiMXhYqwiOx2SWCQVeazW6I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:175807751943:android:62f06377bf2b4ab0bec7a2",
+        "android_client_info": {
+          "package_name": "com.example.travaleva"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHuFeKXdohgiMXhYqwiOx2SWCQVeazW6I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:175807751943:android:d7e024c1090f8bb6bec7a2",
+        "android_client_info": {
+          "package_name": "com.example.travelevaadmin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHuFeKXdohgiMXhYqwiOx2SWCQVeazW6I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
