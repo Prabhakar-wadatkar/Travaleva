@@ -39,10 +39,11 @@ dependencies {
 
     // Firebase libraries
     implementation 'com.google.firebase:firebase-database'
-    implementation 'com.google.firebase:firebase-auth:21.0.6' // latest version
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-appcheck-safetynet:16.1.2'
     implementation 'com.google.firebase:firebase-firestore:24.3.1' // latest version
+    implementation 'com.google.firebase:firebase-auth:22.3.1'
+    implementation 'com.google.android.gms:play-services-auth:20.7.0'
 
     // Google Play Services
     implementation 'com.google.android.play:integrity:1.4.0'
