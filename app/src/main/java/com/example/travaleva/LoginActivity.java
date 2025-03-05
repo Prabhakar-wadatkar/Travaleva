@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
 
     private TextInputEditText emailEditText, passwordEditText;
+    private TextInputLayout passwordInputLayout;
     private MaterialButton signInButton;
     private TextView notRegisteredTextView, forgotPasswordTextView;
 
@@ -55,9 +57,10 @@ public class LoginActivity extends AppCompatActivity {
         // Initialize UI components
         emailEditText = findViewById(R.id.email_edit_text);
         passwordEditText = findViewById(R.id.password_edit_text);
+        passwordInputLayout = findViewById(R.id.password_input_layout);
         signInButton = findViewById(R.id.btn_sign_in);
         notRegisteredTextView = findViewById(R.id.notRegistered);
-        forgotPasswordTextView = findViewById(R.id.forgotPassword); // Forgot Password TextView
+        forgotPasswordTextView = findViewById(R.id.forgotPassword);
 
         // Initialize SharedPreferences
         sharedPreferences = getSharedPreferences("LoginPrefs", Context.MODE_PRIVATE);
@@ -72,7 +75,6 @@ public class LoginActivity extends AppCompatActivity {
 
         // Set up the "Not registered? Register here" TextView click listener
         notRegisteredTextView.setOnClickListener(v -> {
-            // When clicked, open the RegisterActivity
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
         });
@@ -82,42 +84,34 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loginUser() {
-        // Retrieve user input
         String email = emailEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
 
-        // Validate input
         if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
             Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Check user credentials in Firebase Realtime Database
         usersRef.orderByChild("email").equalTo(email)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
-                            // Iterate through matching users
                             for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                                 String dbPassword = userSnapshot.child("password").getValue(String.class);
                                 if (password.equals(dbPassword)) {
-                                    // Successful login
-                                    String userId = userSnapshot.getKey(); // Get the user ID (or any unique identifier)
+                                    String userId = userSnapshot.getKey();
                                     String name = userSnapshot.child("name").getValue(String.class);
                                     String email = userSnapshot.child("email").getValue(String.class);
 
-                                    // Save user data and login status to SharedPreferences
                                     saveUserData(userId, name, email);
                                     Toast.makeText(LoginActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
                                     openDashboard();
                                     return;
                                 }
                             }
-                            // If no password matches
                             Toast.makeText(LoginActivity.this, "Invalid password", Toast.LENGTH_SHORT).show();
                         } else {
-                            // If no user found
                             Toast.makeText(LoginActivity.this, "User not found", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -131,7 +125,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void showForgotPasswordDialog() {
-        // Create a dialog for entering email
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_forgot_password, null);
@@ -143,7 +136,6 @@ public class LoginActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
 
-        // Handle reset button click
         resetButton.setOnClickListener(v -> {
             String email = emailInput.getText().toString().trim();
             if (TextUtils.isEmpty(email)) {
@@ -151,22 +143,17 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
 
-            // Check if the email exists in the Realtime Database
             usersRef.orderByChild("email").equalTo(email)
                     .addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             if (dataSnapshot.exists()) {
-                                // Email exists in the database
                                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                                     String userId = userSnapshot.getKey();
-
-                                    // Show a dialog to enter a new password
                                     showResetPasswordDialog(userId);
                                     dialog.dismiss();
                                 }
                             } else {
-                                // Email does not exist
                                 Toast.makeText(LoginActivity.this, "No user found with this email", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -181,7 +168,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void showResetPasswordDialog(String userId) {
-        // Create a dialog for entering a new password
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_reset_password, null);
@@ -194,7 +180,6 @@ public class LoginActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
 
-        // Handle save button click
         saveButton.setOnClickListener(v -> {
             String newPassword = newPasswordInput.getText().toString().trim();
             String confirmPassword = confirmPasswordInput.getText().toString().trim();
@@ -209,7 +194,6 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
 
-            // Update the password in the Realtime Database
             usersRef.child(userId).child("password").setValue(newPassword)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
@@ -225,7 +209,7 @@ public class LoginActivity extends AppCompatActivity {
     private void saveUserData(String userId, String name, String email) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("isLoggedIn", true);
-        editor.putString("userId", userId); // Save userId
+        editor.putString("userId", userId);
         editor.putString("name", name);
         editor.putString("email", email);
         editor.apply();
