@@ -1,41 +1,35 @@
 package com.example.travaleva.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button; // Add this import
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.travaleva.DetailsActivity;
 import com.example.travaleva.R;
 import com.example.travaleva.model.TopPlacesData;
 
 import java.util.List;
 
 public class TopPlacesAdapter extends RecyclerView.Adapter<TopPlacesAdapter.TopPlacesViewHolder> {
-
     private Context context;
     private List<TopPlacesData> topPlacesDataList;
     private OnItemClickListener listener;
 
-    // Add click listener interface
-    public interface OnItemClickListener {
-        void onTopPlaceClick(TopPlacesData topPlace);
+    public TopPlacesAdapter(Context context, List<TopPlacesData> topPlacesDataList) {
+        this.context = context;
+        this.topPlacesDataList = topPlacesDataList;
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
-    }
-
-    public TopPlacesAdapter(Context context, List<TopPlacesData> topPlacesDataList) {
-        this.context = context;
-        this.topPlacesDataList = topPlacesDataList;
     }
 
     @NonNull
@@ -50,37 +44,52 @@ public class TopPlacesAdapter extends RecyclerView.Adapter<TopPlacesAdapter.TopP
         TopPlacesData currentItem = topPlacesDataList.get(position);
 
         holder.placeName.setText(currentItem.getTitle());
-        holder.city.setText(currentItem.getCity());
-        holder.price.setText("Charges From " + currentItem.getCharges());
+        holder.placeDescription.setText(currentItem.getDescription());
+        holder.placeCity.setText(currentItem.getCity());
+        holder.placeCharges.setText(currentItem.getCharges());
 
+        // Load image using Glide or any other image-loading library
         Glide.with(context)
                 .load(currentItem.getImageUrl())
                 .into(holder.placeImage);
 
-        // Add click listener
-        holder.itemView.setOnClickListener(view -> {
+        // Set click listeners
+        holder.itemView.setOnClickListener(v -> {
             if (listener != null) {
-                listener.onTopPlaceClick(currentItem);
+                listener.onViewDetailsClick(currentItem);
+            }
+        });
+
+        holder.bookButton.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onBookPlaceClick(currentItem);
             }
         });
     }
 
-    // Rest of the code remains unchanged
     @Override
     public int getItemCount() {
         return topPlacesDataList.size();
     }
 
     public static class TopPlacesViewHolder extends RecyclerView.ViewHolder {
+        TextView placeName, placeDescription, placeCity, placeCharges;
         ImageView placeImage;
-        TextView placeName, city, price;
+        Button bookButton; // Button is now recognized
 
         public TopPlacesViewHolder(@NonNull View itemView) {
             super(itemView);
-            placeImage = itemView.findViewById(R.id.place_image);
             placeName = itemView.findViewById(R.id.place_name);
-            city = itemView.findViewById(R.id.place_location);
-            price = itemView.findViewById(R.id.placeCharges);
+            placeDescription = itemView.findViewById(R.id.place_description);
+            placeCity = itemView.findViewById(R.id.place_city);
+            placeCharges = itemView.findViewById(R.id.place_charges);
+            placeImage = itemView.findViewById(R.id.place_image);
+            bookButton = itemView.findViewById(R.id.book_button); // Ensure this ID matches your layout
         }
+    }
+
+    public interface OnItemClickListener {
+        void onViewDetailsClick(TopPlacesData topPlace);
+        void onBookPlaceClick(TopPlacesData topPlace);
     }
 }

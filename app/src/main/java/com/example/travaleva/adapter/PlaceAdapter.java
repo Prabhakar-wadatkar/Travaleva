@@ -34,16 +34,6 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
 
     private Context context;
     private List<Place> placeList;
-    private OnItemClickListener listener;
-
-    public interface OnItemClickListener {
-        void onViewDetailsClick(Place place);
-        void onBookNowClick(Place place);
-    }
-
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        this.listener = listener;
-    }
 
     public PlaceAdapter(Context context, List<Place> placeList) {
         this.context = context;
@@ -69,7 +59,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
         holder.parkingTextView.setText(place.getParkingAvailable());
         holder.addedByTextView.setText(place.getAddedBy());
 
-        // **Set city text**
+        // Set city text
         holder.cityTextView.setText(place.getCity());
 
         // Load image using Glide
@@ -110,10 +100,6 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
 
         // "BOOK NOW" button functionality
         holder.buttonBookNow.setOnClickListener(v -> {
-            if (listener != null) {
-                listener.onBookNowClick(place);
-            }
-
             // Open Booking Fragment
             AppCompatActivity activity = (AppCompatActivity) context;
             BookingFragment bookingFragment = BookingFragment.newInstance(place);
@@ -124,7 +110,6 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
                     .addToBackStack(null)
                     .commit();
         });
-
     }
 
     @Override
@@ -153,7 +138,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
             buttonBookNow = itemView.findViewById(R.id.buttonBookPlace);
             detailsLayout = itemView.findViewById(R.id.detailsLayout);
 
-            // **Initialize cityTextView**
+            // Initialize cityTextView
             cityTextView = itemView.findViewById(R.id.placeCity);
         }
     }
@@ -190,129 +175,3 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
         notifyDataSetChanged();
     }
 }
-
-
-
-
-
-
-
-
-//public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder> {
-//
-//    private static final String PREF_NAME = "TravalevaPrefs";
-//    private static final String PLACE_LIST_KEY = "PlaceList";
-//
-//    private Context context;
-//    private List<Place> placeList;
-//    private OnItemClickListener listener;
-//
-//    public interface OnItemClickListener {
-//        void onViewDetailsClick(Place place);
-//    }
-//
-//    public void setOnItemClickListener(OnItemClickListener listener) {
-//        this.listener = listener;
-//    }
-//
-//    public PlaceAdapter(Context context, List<Place> placeList) {
-//        this.context = context;
-//        this.placeList = placeList;
-//
-//        // Save the list to SharedPreferences when the adapter is created
-//        savePlaceListToSharedPreferences();
-//    }
-//
-//    @NonNull
-//    @Override
-//    public PlaceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//        View view = LayoutInflater.from(context).inflate(R.layout.item_place_card, parent, false);
-//        return new PlaceViewHolder(view);
-//    }
-//
-//    @Override
-//    public void onBindViewHolder(PlaceViewHolder holder, int position) {
-//        Place place = placeList.get(position);
-//
-//        // Set text details
-//        holder.titleTextView.setText(place.getTitle());
-//        holder.descriptionTextView.setText(place.getDescription());
-//        holder.chargesTextView.setText(place.getCharges());
-//        holder.parkingTextView.setText(place.getParkingAvailable());
-//        holder.addedByTextView.setText(place.getAddedBy());
-//
-//        // Load the image using Glide
-//        if (place.getImageUrl() != null && !place.getImageUrl().isEmpty()) {
-//            Glide.with(context)
-//                    .load(place.getImageUrl())
-//                    .placeholder(R.drawable.placeholder_image) // Placeholder image
-//                    .error(R.drawable.error_image) // Error image
-//                    .into(holder.placeImageView);
-//        } else {
-//            holder.placeImageView.setImageResource(R.drawable.placeholder_image);
-//        }
-//
-//        // Set click listener for the "View Details" button
-//        holder.buttonViewDetails.setOnClickListener(v -> {
-//            if (listener != null) {
-//                listener.onViewDetailsClick(place);
-//            }
-//        });
-//    }
-//
-//    @Override
-//    public int getItemCount() {
-//        return placeList.size();
-//    }
-//
-//    public static class PlaceViewHolder extends RecyclerView.ViewHolder {
-//        TextView titleTextView, descriptionTextView, chargesTextView, parkingTextView, addedByTextView;
-//        ImageView placeImageView;
-//        MaterialButton buttonViewDetails;
-//
-//        public PlaceViewHolder(View itemView) {
-//            super(itemView);
-//
-//            // Initialize all views from the layout
-//            titleTextView = itemView.findViewById(R.id.Place_title);
-//            descriptionTextView = itemView.findViewById(R.id.placeDescription);
-//            chargesTextView = itemView.findViewById(R.id.placeCharges);
-//            parkingTextView = itemView.findViewById(R.id.placeParking);
-//            addedByTextView = itemView.findViewById(R.id.placeAddedBy);
-//            placeImageView = itemView.findViewById(R.id.placeImage);
-//            buttonViewDetails = itemView.findViewById(R.id.buttonViewDetails);
-//        }
-//    }
-//
-//    // Save the place list to SharedPreferences
-//    private void savePlaceListToSharedPreferences() {
-//        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//
-//        Gson gson = new Gson();
-//        String json = gson.toJson(placeList); // Convert list to JSON
-//        editor.putString(PLACE_LIST_KEY, json);
-//        editor.apply();
-//    }
-//
-//    // Retrieve the place list from SharedPreferences
-//    public static List<Place> getPlaceListFromSharedPreferences(Context context) {
-//        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-//        String json = sharedPreferences.getString(PLACE_LIST_KEY, null);
-//
-//        if (json != null) {
-//            Gson gson = new Gson();
-//            Type type = new TypeToken<List<Place>>() {}.getType();
-//            return gson.fromJson(json, type);
-//        } else {
-//            return new ArrayList<>(); // Return an empty list if no data is found
-//        }
-//    }
-//
-//    // Update the place list in the adapter and save it to SharedPreferences
-//    public void updatePlaceList(List<Place> newPlaceList) {
-//        this.placeList = newPlaceList;
-//        savePlaceListToSharedPreferences();
-//        notifyDataSetChanged();
-//    }
-//}

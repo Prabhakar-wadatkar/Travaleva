@@ -72,16 +72,25 @@
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/user_profile">
+            app:layout_constraintTop_toBottomOf="@id/user_profile"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/primaryColor"
+            app:endIconMode="clear_text"
+            app:endIconDrawable="@drawable/ic_clear"
+            app:endIconTint="@color/primaryColor"
+            app:startIconDrawable="@drawable/ic_search"
+            app:startIconTint="@color/primaryColor">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/searchEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Search Destinations"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
                 android:background="@drawable/rounded_corner"
-                android:drawableRight="@drawable/ic_search"
-                android:hint="Search Destinations" />
-
+                android:imeOptions="actionSearch"
+                android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
 

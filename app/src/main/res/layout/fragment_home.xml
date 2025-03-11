@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".fragments.HomeFragment">
 
 
@@ -33,41 +34,148 @@
             </com.google.android.material.card.MaterialCardView>
 
 
-            <!-- Recent Section -->
             <LinearLayout
+                android:id="@+id/select_airline_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:gravity="center_vertical">
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="Recent"
-                    android:paddingStart="8dp"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="16sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    style="@style/MaterialAlertDialog.Material3.Title.Text"
+                    android:text="Top Category"/>
 
-<!--                <TextView-->
-<!--                    android:id="@+id/textView4"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:fontFamily="@font/roboto_bold"-->
-<!--                    android:text="See All"-->
-<!--                    android:textColor="@android:color/background_dark"-->
-<!--                    android:textSize="12sp" />-->
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recent_recycler"
+            <!-- Horizontal Flight Name Cards Section -->
+            <LinearLayout
+                android:id="@+id/horizontalView"
                 android:layout_width="match_parent"
-                android:layout_height="212dp"/>
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/select_airline_layout">
 
+                <!-- First Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/category1"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:layout_margin="4dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_category1"
+                            android:scaleType="fitXY" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Second Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/category2"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:layout_margin="4dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_category2" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Third Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/category3"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:layout_margin="4dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_category3"
+                            android:scaleType="fitXY" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Fourth Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/category4"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:layout_margin="4dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_category4"
+                            android:scaleType="fitXY" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <!-- Loader -->
+            <ProgressBar
+                android:id="@+id/loader"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:indeterminateDrawable="@drawable/trip" />
 
             <!-- Top Places Section -->
             <LinearLayout
@@ -101,16 +209,47 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/top_places_recycler"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="270dp"/>
 
-            <!-- Loader -->
-            <ProgressBar
-                android:id="@+id/loader"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:visibility="gone"
-                android:indeterminateDrawable="@drawable/trip" />
+            <!-- Recent Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Recent"
+                    android:paddingStart="8dp"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="16sp" />
+
+                <!--                <TextView-->
+                <!--                    android:id="@+id/textView4"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:fontFamily="@font/roboto_bold"-->
+                <!--                    android:text="See All"-->
+                <!--                    android:textColor="@android:color/background_dark"-->
+                <!--                    android:textSize="12sp" />-->
+
+            </LinearLayout>
+
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recent_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="212dp"/>
+
+
         </LinearLayout>
     </ScrollView>
 

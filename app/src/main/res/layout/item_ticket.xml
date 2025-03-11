@@ -134,5 +134,15 @@
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
+    <Button
+        android:id="@+id/buttonCancelTicket"
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:text="Cancel Ticket"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="end"
+        android:textSize="8sp"
+        android:backgroundTint="@color/red"
+    android:textColor="@android:color/white" />
 
 </androidx.cardview.widget.CardView>

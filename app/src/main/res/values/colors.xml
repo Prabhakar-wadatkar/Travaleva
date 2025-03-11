@@ -17,6 +17,8 @@
     <color name="secondary_text">#757575</color>
     <color name="primary_color">#6200EE</color>
     <color name="card_stroke">#1F000000</color>
+    <color name="secondary_text_color">#757575</color>
+    <color name="route_color">#2196F3</color>
 
 
 </resources>

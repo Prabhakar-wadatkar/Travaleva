@@ -3,9 +3,7 @@ package com.example.travaleva.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,7 +12,7 @@ import com.example.travaleva.model.Flight;
 
 import java.util.List;
 
-public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.ViewHolder> {
+public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.FlightViewHolder> {
 
     private List<Flight> flightList;
 
@@ -24,21 +22,19 @@ public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.ViewHolder
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.flight_item, parent, false);
-        return new ViewHolder(view);
+    public FlightViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_flight, parent, false);
+        return new FlightViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull FlightViewHolder holder, int position) {
         Flight flight = flightList.get(position);
-
-        holder.airlineLogo.setImageResource(flight.getAirlineLogo());
-        holder.airlineName.setText(flight.getAirlineName());
-        holder.departureTime.setText(flight.getDepartureTime());
-        holder.arrivalTime.setText(flight.getArrivalTime());
-        holder.duration.setText(flight.getDuration());
-        holder.price.setText(flight.getPrice());
+        holder.flightNumber.setText(flight.getFlightNumber());
+        holder.origin.setText("Origin: " + flight.getOrigin());
+        holder.destination.setText("Destination: " + flight.getDestination());
+        holder.departureTime.setText("Departure: " + flight.getDepartureTime());
+        holder.price.setText("$" + flight.getPrice());
     }
 
     @Override
@@ -46,21 +42,15 @@ public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.ViewHolder
         return flightList.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView airlineLogo;
-        TextView airlineName;
-        TextView departureTime;
-        TextView arrivalTime;
-        TextView duration;
-        TextView price;
+    static class FlightViewHolder extends RecyclerView.ViewHolder {
+        TextView flightNumber, origin, destination, departureTime, price;
 
-        public ViewHolder(@NonNull View itemView) {
+        public FlightViewHolder(@NonNull View itemView) {
             super(itemView);
-            airlineLogo = itemView.findViewById(R.id.airlineLogo);
-            airlineName = itemView.findViewById(R.id.airlineName);
+            flightNumber = itemView.findViewById(R.id.flightNumber);
+            origin = itemView.findViewById(R.id.origin);
+            destination = itemView.findViewById(R.id.destination);
             departureTime = itemView.findViewById(R.id.departureTime);
-            arrivalTime = itemView.findViewById(R.id.arrivalTime);
-            duration = itemView.findViewById(R.id.duration);
             price = itemView.findViewById(R.id.price);
         }
     }

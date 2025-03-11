@@ -60,13 +60,13 @@ public class ProfileFragment extends Fragment {
 
         // Find the cards for placeTicket, flightTicket, and hotelTicket
         MaterialCardView placeTicketCard = view.findViewById(R.id.placeTicket);
-        MaterialCardView flightTicketCard = view.findViewById(R.id.flightsTicket);
-        MaterialCardView hotelTicketCard = view.findViewById(R.id.hotelTicket);
+//        MaterialCardView flightTicketCard = view.findViewById(R.id.flightsTicket);
+//        MaterialCardView hotelTicketCard = view.findViewById(R.id.hotelTicket);
 
         // Set onClickListeners for the cards
         placeTicketCard.setOnClickListener(v -> openTicketFragment("place"));
-        flightTicketCard.setOnClickListener(v -> openTicketFragment("flight"));
-        hotelTicketCard.setOnClickListener(v -> openTicketFragment("hotel"));
+//        flightTicketCard.setOnClickListener(v -> openTicketFragment("flight"));
+//        hotelTicketCard.setOnClickListener(v -> openTicketFragment("hotel"));
 
         return view;
     }

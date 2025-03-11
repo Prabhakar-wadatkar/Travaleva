@@ -5,7 +5,8 @@ public class Ticket {
     private String placeName;
     private String city;
     private String date;
-    private double totalAmount; // Use "totalAmount" instead of "cost"
+    private double totalAmount;
+    private String status; // New field: "active" or "canceled"
 
     // Default constructor (required for Firebase)
     public Ticket() {}
@@ -25,4 +26,7 @@ public class Ticket {
 
     public double getTotalAmount() { return totalAmount; }
     public void setTotalAmount(double totalAmount) { this.totalAmount = totalAmount; }
+
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 }

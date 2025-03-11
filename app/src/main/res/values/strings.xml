@@ -9,5 +9,27 @@
     <string name="logout">Logout</string>
     <string name="edit_profile_icon">Edit Profile Icon</string>
     <string name="logout_icon">Logout Icon</string>
+    <string name="no_route_found">No route found</string>
+    <string name="directions_failed">Failed to get directions</string>
+    <string name="no_location_error">Location not available</string>
+    <string name="location_unavailable">Location services unavailable</string>
+    <string name="location_error">Error getting location</string>
+    <string name="no_marker_selected">Select a location first</string>
+    <string name="current_location_unavailable">Current Location unavailable</string>
+    <string name="location_permission_denied">location_permission_denied</string>
+    <string name="select_map_type">select_map_type</string>
+    <string name="route_drawing_failed">route_drawing_failed</string>
+    <string name="invalid_route">invalid_route</string>
+    <string name="current_location">Current Location</string>
+
+    <string name="google_maps_key">YOUR_API_KEY</string>
+    <string name="search_hint">Search places</string>
+    <string-array name="map_types">
+        <item>Normal</item>
+        <item>Satellite</item>
+        <item>Terrain</item>
+        <item>Hybrid</item>
+    </string-array>
+
 
 </resources>

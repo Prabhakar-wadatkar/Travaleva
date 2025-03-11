@@ -78,17 +78,17 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"/>
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/bookButton"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="36dp"
-                    android:text="Book Now"
-                    app:icon="@drawable/ic_hotels"
-                    app:iconTint="?attr/colorPrimary"
-                    app:strokeColor="?attr/colorPrimary"
-                    app:strokeWidth="1dp"
-                    android:textColor="?attr/colorPrimary"/>
+<!--                <com.google.android.material.button.MaterialButton-->
+<!--                    android:id="@+id/bookButton"-->
+<!--                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="36dp"-->
+<!--                    android:text="Book Now"-->
+<!--                    app:icon="@drawable/ic_hotels"-->
+<!--                    app:iconTint="?attr/colorPrimary"-->
+<!--                    app:strokeColor="?attr/colorPrimary"-->
+<!--                    app:strokeWidth="1dp"-->
+<!--                    android:textColor="?attr/colorPrimary"/>-->
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
