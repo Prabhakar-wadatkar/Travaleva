@@ -49,7 +49,7 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     style="@style/MaterialAlertDialog.Material3.Title.Text"
-                    android:text="Top Category"/>
+                    android:text="Top Category:"/>
 
             </LinearLayout>
 
@@ -191,7 +191,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/roboto_bold"
-                    android:text="Top Places"
+                    android:text="Top Packages:"
                     android:paddingStart="8dp"
                     android:textColor="@android:color/background_dark"
                     android:textSize="16sp" />
@@ -209,7 +209,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/top_places_recycler"
                 android:layout_width="match_parent"
-                android:layout_height="270dp"/>
+                android:layout_height="540dp"/>
 
             <!-- Recent Section -->
             <LinearLayout

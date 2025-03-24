@@ -19,10 +19,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.travaleva.fragments.CategoryFragment;
-import com.example.travaleva.fragments.FlightSearchFragment;
+import com.example.travaleva.fragments.CityWisePlacesFragment;
 import com.example.travaleva.fragments.HomeFragment;
 import com.example.travaleva.fragments.MapFragment;
-
 import com.example.travaleva.fragments.HotelsFragment;
 import com.example.travaleva.fragments.ProfileFragment;
 import com.example.travaleva.fragments.SearchResultsFragment;
@@ -34,7 +33,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -80,10 +78,8 @@ public class MainActivity extends AppCompatActivity {
                 selectedFragment = new CategoryFragment();
             } else if (item.getItemId() == R.id.map) {
                 selectedFragment = new MapFragment();
-//            } else if (item.getItemId() == R.id.flights) {
-//                selectedFragment = new FlightSearchFragment();
             } else if (item.getItemId() == R.id.hotels) {
-                selectedFragment = new HotelsFragment();
+                selectedFragment = new CityWisePlacesFragment();
             }
 
             if (selectedFragment != null) {
@@ -91,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
+
         // Get the user profile ImageView and set an OnClickListener
         ImageView userProfile = findViewById(R.id.user_profile);
         userProfile.setOnClickListener(v -> {
@@ -126,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
     private void performSearch() {
         String query = searchEditText.getText().toString().trim();
         if (!query.isEmpty()) {
-            // Query Firebase for places matching the searched city name
+            // Query Firebase for places matching the searched city name (case-insensitive)
             searchPlacesByCity(query);
         } else {
             Toast.makeText(this, "Please enter a city name", Toast.LENGTH_SHORT).show();
@@ -134,16 +131,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void searchPlacesByCity(String cityName) {
-        Query query = placesRef.orderByChild("city").equalTo(cityName);
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+        // Fetch all places and filter client-side for case-insensitive matching
+        placesRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List<Place> searchResults = new ArrayList<>();
+                String searchQueryLower = cityName.toLowerCase(); // Normalize search query to lowercase
+
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Place place = snapshot.getValue(Place.class);
                     if (place != null) {
-                        place.setId(snapshot.getKey()); // Set the Firebase key as the place ID
-                        searchResults.add(place);
+                        String placeCityLower = place.getCity().toLowerCase(); // Normalize city name to lowercase
+                        if (placeCityLower.contains(searchQueryLower)) { // Use contains for partial matches
+                            place.setId(snapshot.getKey()); // Set the Firebase key as the place ID
+                            searchResults.add(place);
+                        }
                     }
                 }
 
@@ -242,16 +244,4 @@ public class MainActivity extends AppCompatActivity {
         return (x > viewX && x < (viewX + view.getWidth())) &&
                 (y > viewY && y < (viewY + view.getHeight()));
     }
-
-//    @Override
-//    public void onFlightSearchFragmentLoaded() {
-//        // Hide the search bar when FlightSearchFragment is loaded
-//        searchLayout.setVisibility(View.GONE);
-//    }
-
-//    @Override
-//    public void onFlightSearchFragmentDetached() {
-//        // Show the search bar when FlightSearchFragment is detached
-//        searchLayout.setVisibility(View.VISIBLE);
-//    }
 }

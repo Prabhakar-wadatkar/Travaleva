@@ -1,6 +1,7 @@
 package com.example.travaleva.adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +10,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.travaleva.R;
+import com.example.travaleva.fragments.BookingFragment;
 import com.example.travaleva.model.Place;
 import com.google.android.material.button.MaterialButton;
 
@@ -46,7 +51,6 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
 
         // Bind expandable section details
         holder.placeDescription.setText(place.getDescription());
-//        holder.placeParking.setText(place.isParkingAvailable() ? "Yes" : "No");
         holder.placeAddedBy.setText(place.getAddedBy());
 
         // Load image using Glide
@@ -72,12 +76,26 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
 
         // Handle "BOOK PLACE" button click
         holder.buttonBookPlace.setOnClickListener(v -> {
-            // Add your booking logic here
+            // Open BookingFragment
+            BookingFragment bookingFragment = new BookingFragment();
+
+            // Pass the entire Place object to BookingFragment
+            Bundle args = new Bundle();
+            args.putSerializable("place", place); // Pass the Place object
+            bookingFragment.setArguments(args);
+
+            // Perform fragment transaction
+            FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, bookingFragment);
+            fragmentTransaction.addToBackStack(null); // Add to back stack
+            fragmentTransaction.commit();
         });
     }
 
     @Override
     public int getItemCount() {
+        // Return the size of the dataset
         return searchResultsList.size();
     }
 

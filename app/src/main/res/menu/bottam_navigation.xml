@@ -12,12 +12,8 @@
         android:id="@+id/map"
         android:title="Map"
         android:icon="@drawable/ic_map"/>
-<!--    <item-->
-<!--        android:id="@+id/flights"-->
-<!--        android:title="Flights"-->
-<!--        android:icon="@drawable/ic_flight"/>-->
     <item
         android:id="@+id/hotels"
-        android:title="Hotels"
-        android:icon="@drawable/ic_hotels"/>
+        android:title="Top City"
+        android:icon="@drawable/ic_city_places"/>
 </menu>

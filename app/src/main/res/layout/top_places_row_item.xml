@@ -61,6 +61,55 @@
                 android:layout_height="wrap_content"
                 android:text="Description"
                 android:textSize="10sp" />
+            <!-- Parking -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textParkingLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Parking Available:"
+                    android:textSize="10sp"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/placeParking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="Yes"
+                    android:textSize="12sp"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+            <!-- Place Added By -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/labelAddedBy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Place added by:"
+                    android:textSize="10sp"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/placeAddedBy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="Admin"
+                    android:textSize="10sp"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -83,6 +132,7 @@
                     android:textColor="@android:color/holo_red_dark"
                     android:textStyle="bold"
                     android:paddingTop="4dp" />
+
             </LinearLayout>
 
 
@@ -106,54 +156,54 @@
                     android:textColor="@color/black" />
 
                 <!-- Parking -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="1dp"
-                    android:orientation="horizontal">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="1dp"-->
+<!--                    android:orientation="horizontal">-->
 
-                    <TextView
-                        android:id="@+id/textParkingLabel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Parking Available:"
-                        android:textSize="12sp"
-                        android:textColor="@color/black" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/textParkingLabel"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Parking Available:"-->
+<!--                        android:textSize="12sp"-->
+<!--                        android:textColor="@color/black" />-->
 
-                    <TextView
-                        android:id="@+id/placeParking"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="Yes"
-                        android:textSize="12sp"
-                        android:textColor="@color/black" />
-                </LinearLayout>
+<!--                    <TextView-->
+<!--                        android:id="@+id/placeParking"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="16dp"-->
+<!--                        android:text="Yes"-->
+<!--                        android:textSize="12sp"-->
+<!--                        android:textColor="@color/black" />-->
+<!--                </LinearLayout>-->
 
-                <!-- Place Added By -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:orientation="horizontal">
+<!--                &lt;!&ndash; Place Added By &ndash;&gt;-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="4dp"-->
+<!--                    android:orientation="horizontal">-->
 
-                    <TextView
-                        android:id="@+id/labelAddedBy"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Place added by:"
-                        android:textSize="12sp"
-                        android:textColor="@color/black" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/labelAddedBy"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Place added by:"-->
+<!--                        android:textSize="12sp"-->
+<!--                        android:textColor="@color/black" />-->
 
-                    <TextView
-                        android:id="@+id/placeAddedBy"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="Admin"
-                        android:textSize="12sp"
-                        android:textColor="@color/black" />
-                </LinearLayout>
+<!--                    <TextView-->
+<!--                        android:id="@+id/placeAddedBy"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="16dp"-->
+<!--                        android:text="Admin"-->
+<!--                        android:textSize="12sp"-->
+<!--                        android:textColor="@color/black" />-->
+<!--                </LinearLayout>-->
             </LinearLayout>
 
             <!-- Buttons -->

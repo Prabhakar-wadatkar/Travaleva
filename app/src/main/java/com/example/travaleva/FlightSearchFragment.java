@@ -1,4 +1,4 @@
-package com.example.travaleva.fragments;
+package com.example.travaleva;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
