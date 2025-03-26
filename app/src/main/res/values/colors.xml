@@ -21,5 +21,6 @@
     <color name="route_color">#2196F3</color>
     <color name="place_card">#FFF3E0</color>
     <color name="place_text">#FF5722</color>
+    <color name="purple_500">#6200EE</color>
 
 </resources>

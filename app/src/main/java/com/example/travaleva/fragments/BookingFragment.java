@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.NumberPicker;
+import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,6 +50,9 @@ public class BookingFragment extends Fragment {
 
     private String startDateString, endDateString;
     private SharedPreferences sharedPreferences;
+
+    private ProgressBar loadingSpinner;
+    private boolean isPaymentSuccessful = false;
 
     public static BookingFragment newInstance(Place place) {
         BookingFragment fragment = new BookingFragment();
@@ -93,6 +97,8 @@ public class BookingFragment extends Fragment {
         if (place != null) {
             placeTitleTextView.setText(place.getTitle());
         }
+
+        // No buttons are disabled initially; control is handled programmatically
     }
 
     private void initializeViews(View view) {
@@ -115,6 +121,8 @@ public class BookingFragment extends Fragment {
         editCVV = view.findViewById(R.id.editTextCVV);
 
         buttonOrderNow = view.findViewById(R.id.buttonOrderNow);
+
+        loadingSpinner = view.findViewById(R.id.loadingSpinner);
 
         buttonStartDate.setOnClickListener(v -> showDatePicker(buttonStartDate, true));
         buttonEndDate.setOnClickListener(v -> showDatePicker(buttonEndDate, false));
@@ -141,9 +149,9 @@ public class BookingFragment extends Fragment {
             button.setText(selectedDate);
 
             if (isStartDate) {
-                startDateString = selectedDate; // Store as formatted string
+                startDateString = selectedDate;
             } else {
-                endDateString = selectedDate; // Store as formatted string
+                endDateString = selectedDate;
             }
 
             calculateTotalDaysAndAmount();
@@ -194,8 +202,31 @@ public class BookingFragment extends Fragment {
     }
 
     private void setupPayButtonListeners() {
-        btnPayCard.setOnClickListener(v -> showPaymentSuccess());
-        btnPayUPI.setOnClickListener(v -> showPaymentSuccess());
+        btnPayCard.setOnClickListener(v -> {
+            if (!areDatesSelected()) {
+                Toast.makeText(getContext(), "Please select both start and end dates", Toast.LENGTH_SHORT).show();
+            } else if (validateCardDetails()) {
+                showLoading(true);
+                v.postDelayed(() -> {
+                    showLoading(false);
+                    isPaymentSuccessful = true;
+                    showPaymentSuccess();
+                }, 2000); // Simulate payment processing with 2-second delay
+            }
+        });
+
+        btnPayUPI.setOnClickListener(v -> {
+            if (!areDatesSelected()) {
+                Toast.makeText(getContext(), "Please select both start and end dates", Toast.LENGTH_SHORT).show();
+            } else {
+                showLoading(true);
+                v.postDelayed(() -> {
+                    showLoading(false);
+                    isPaymentSuccessful = true;
+                    showPaymentSuccess();
+                }, 2000); // Simulate payment processing with 2-second delay
+            }
+        });
     }
 
     private void showPaymentSuccess() {
@@ -275,22 +306,19 @@ public class BookingFragment extends Fragment {
 
     private String generateTicketNumber() {
         Random random = new Random();
-
-        // Generate first 3 capital letters
         String firstPart = "" + (char) ('A' + random.nextInt(26)) + (char) ('A' + random.nextInt(26)) + (char) ('A' + random.nextInt(26));
-
-        // Generate 5-digit number
         String numberPart = String.format("%05d", random.nextInt(100000));
-
-        // Generate last 2 capital letters
         String lastPart = "" + (char) ('A' + random.nextInt(26)) + (char) ('A' + random.nextInt(26));
-
         return firstPart + numberPart + lastPart;
     }
 
     private void setupOrderNowButtonListener(String userId, String userName) {
         buttonOrderNow.setOnClickListener(v -> {
-            // Ensure userId is not null
+            if (!isPaymentSuccessful) {
+                Toast.makeText(getContext(), "Please complete payment first", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             if (userId == null) {
                 Toast.makeText(getContext(), "You must be logged in to make a booking", Toast.LENGTH_SHORT).show();
                 return;
@@ -308,34 +336,29 @@ public class BookingFragment extends Fragment {
                 paymentDetails = new Booking.PaymentDetails(cardNumber, expiryDate, cvv);
             }
 
-            // Generate a unique ticket number
             String ticketNumber = generateTicketNumber();
 
-            // Create a Booking object with string dates
             Booking booking = new Booking(
-                    userId, // Pass the userId from SharedPreferences
+                    userId,
                     place != null ? place.getId() : "",
-                    startDateString, endDateString,  // Pass formatted date strings
+                    startDateString, endDateString,
                     numberPickerAdults.getValue(), numberPickerChildren.getValue(),
                     totalAmount, paymentMethod, paymentDetails, userName, placeName
             );
-
-            // Set the generated ticket number
             booking.setTicketNumber(ticketNumber);
 
-            // Save the booking to Firebase under the userId node
+            showLoading(true);
             DatabaseReference bookingRef = FirebaseDatabase.getInstance()
                     .getReference("bookings")
-                    .child(userId); // Nest bookings under userId
+                    .child(userId);
 
-            // Generate a unique booking ID
             String bookingId = bookingRef.push().getKey();
 
-            // Save the booking with the generated bookingId
             bookingRef.child(bookingId).setValue(booking)
                     .addOnCompleteListener(task -> {
+                        showLoading(false);
                         if (task.isSuccessful()) {
-                            showTicketDialog(ticketNumber); // Show ticket dialog
+                            showTicketDialog(ticketNumber);
                         } else {
                             Toast.makeText(getContext(), "Booking Failed. Please try again", Toast.LENGTH_SHORT).show();
                         }
@@ -344,11 +367,53 @@ public class BookingFragment extends Fragment {
     }
 
     private void showTicketDialog(String ticketNumber) {
-        // Create and show the ticket dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Booking Confirmed");
         builder.setMessage("Your booking is confirmed!\nTicket Number: " + ticketNumber);
-        builder.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());
+        builder.setPositiveButton("OK", (dialog, which) -> {
+            dialog.dismiss();
+            if (getParentFragmentManager().getBackStackEntryCount() > 0) {
+                getParentFragmentManager().popBackStack();
+            } else {
+                if (getActivity() != null) {
+                    getActivity().finish();
+                }
+            }
+        });
         builder.create().show();
+    }
+
+    private boolean validateCardDetails() {
+        if (paymentMethodGroup.getCheckedRadioButtonId() == R.id.radioCard) {
+            String cardNumber = editCardNumber.getText().toString().trim();
+            String expiryDate = editExpiryDate.getText().toString().trim();
+            String cvv = editCVV.getText().toString().trim();
+
+            if (cardNumber.length() < 19) {
+                Toast.makeText(getContext(), "Please enter a valid card number", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+            if (!expiryDate.matches("\\d{2}/\\d{2}")) {
+                Toast.makeText(getContext(), "Please enter a valid expiry date (MM/YY)", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+            if (cvv.length() < 3) {
+                Toast.makeText(getContext(), "Please enter a valid CVV", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void showLoading(boolean show) {
+        loadingSpinner.setVisibility(show ? View.VISIBLE : View.GONE);
+        btnPayCard.setEnabled(!show);
+        btnPayUPI.setEnabled(!show);
+        buttonOrderNow.setEnabled(!show); // Disable during loading, but not based on isPaymentSuccessful here
+    }
+
+    private boolean areDatesSelected() {
+        return startDateString != null && !startDateString.isEmpty() &&
+                endDateString != null && !endDateString.isEmpty();
     }
 }

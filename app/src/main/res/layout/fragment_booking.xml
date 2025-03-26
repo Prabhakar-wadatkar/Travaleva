@@ -239,6 +239,7 @@
                 android:text="UPI"
                 android:layout_marginStart="16dp"/>
         </RadioGroup>
+
         <ViewSwitcher
             android:id="@+id/paymentSwitcher"
             android:layout_width="match_parent"
@@ -261,7 +262,8 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Card Number">
+                    android:hint="Card Number"
+                    app:errorEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editTextCardNumber"
@@ -269,21 +271,20 @@
                         android:layout_height="wrap_content"
                         android:inputType="number"
                         android:maxLength="19"
-                        android:digits="0123456789" />
+                        android:digits="0123456789 " />
                 </com.google.android.material.textfield.TextInputLayout>
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     android:orientation="horizontal">
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:hint="Expiry Date">
+                        android:hint="Expiry Date"
+                        app:errorEnabled="true">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/editTextExpiryDate"
@@ -294,13 +295,14 @@
                             android:digits="0123456789/" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginStart="16dp"
-                        android:hint="CVV">
+                        android:hint="CVV"
+                        app:errorEnabled="true">
+
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/editTextCVV"
                             android:layout_width="match_parent"
@@ -360,78 +362,129 @@
             </LinearLayout>
         </ViewSwitcher>
 
+        <!-- Loading Indicator (Spinner) -->
+        <ProgressBar
+            android:id="@+id/loadingSpinner"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/paymentSwitcher"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"/>
 
-
-
-        <!-- Popular Places Card -->
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/popularPlacesCard"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/paymentSwitcher"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <!-- Package Deals Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/packageDealsCard"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Popular places"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
+            app:layout_constraintTop_toBottomOf="@id/loadingSpinner"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="8dp">
+                android:orientation="vertical"
+                android:padding="16dp">
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="20% discount for Lorem Customers"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+                    android:text="Exclusive Package Deals"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:layout_width="0dp"
+                <!-- Hotel Section -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Use"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    app:strokeColor="@color/gray"
-                    app:strokeWidth="1dp"
-                    android:backgroundTint="@android:color/transparent"
-                    android:textColor="@color/gray"
-                    android:textSize="12sp"
-                    android:onClick="applyDiscount" />
+                    android:orientation="horizontal"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center_vertical">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_hotel"
+                        android:tint="@color/purple_500" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:text="Hotel Stay"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
+                </LinearLayout>
+
+                <!-- Travel Section -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_bus"
+                        android:tint="@color/purple_500" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:text="Round Trip Transportation"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
+                </LinearLayout>
+
+                <!-- Lunch Section -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_restaurant"
+                        android:tint="@color/purple_500" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:text="Complimentary Lunch Buffet"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.card.MaterialCardView>
 
-<!-- Book Now Button -->
-<com.google.android.material.button.MaterialButton
-    android:id="@+id/buttonOrderNow"
-    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-    android:layout_width="200dp"
-    android:layout_height="60dp"
-    android:text="BOOK PLACE"
-    android:textColor="@color/gray"
-    android:textSize="12sp"
-    app:strokeColor="@color/gray"
-    app:strokeWidth="1dp"
-    android:layout_margin="16dp"
-    app:layout_constraintTop_toBottomOf="@+id/popularPlacesCard"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintBottom_toBottomOf="parent"
-    android:onClick="openBookingFragment"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+        <!-- Book Now Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonOrderNow"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:text="BOOK PLACE"
+            android:textColor="@color/gray"
+            android:textSize="12sp"
+            app:strokeColor="@color/gray"
+            app:strokeWidth="1dp"
+            android:layout_margin="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/packageDealsCard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:onClick="openBookingFragment"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
